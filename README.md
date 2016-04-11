@@ -18,9 +18,8 @@ A tic-tac-toe game.
 ## Contributors
 
 * Lina Lu 
-Email: linalu001@gmail.com>
-Twitter: @thelinalu
+- Email: <linalu001@gmail.com>
 
 ## License
 
-MIT
+- MIT
