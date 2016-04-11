@@ -1,0 +1,117 @@
+body {
+	background-color: #ff8000;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+.board-row-cell, .board-row-cell-filled {
+	font-size: 25vmin;
+	height: 30vmin;
+	width: 30vmin;
+	border: 5px solid #fff;
+	display: table-cell;
+	vertical-align: middle;
+	text-align:center;
+	cursor: pointer;
+	text-shadow: #fff 0 0 30px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.board-row-cell-filled {
+	cursor: default;
+}
+
+.board-row {
+	display: table-row;
+}
+
+.board-container, .game-status-wrapper, .game-button-wrapper, .title-container, .game-size-selection-wrapper {
+	color: #fff;
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+  justify-content: center;
+}
+
+.game-size-selection-container {
+	margin-top: 10%;
+}
+
+.game-size-selection-wrapper {
+	margin-bottom: 20%;
+}
+
+.title-container {
+	margin-bottom: 5%;
+	letter-spacing: 1.5px;
+	font-size: 6vmin;
+	text-shadow: #fff 0 0 8px;
+}
+
+.view-container {
+	width: 100%;
+	height: 99vh;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-reset-button, .game-size-selection-button {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	padding-left: 5vmin;
+	padding-right: 5vmin;
+	font-size: 9vmin;
+	color: #ff8000;
+	background-color: #fff;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	letter-spacing: 1px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.game-size-selection-button {
+	background-color: #ff8000;
+	color: #fff;
+	font-size: 5vmin;
+	text-shadow: #fff 0 0 5px;
+}
+
+.game-size-selection-wrapper button:hover, .game-button-wrapper button:hover {
+	color: #ff8000;
+	background-color: #fff;
+}
+
+.game-status-wrapper {
+	height: 20vmin;
+	text-shadow: #fff 0 0 1px;
+}
+
+@media (min-width: 767px) {
+	.title-container {
+		font-size: 2.3vmin;
+		margin-bottom: 0;
+	}
+
+	.board-row-cell, .board-row-cell-filled {
+		font-size: 10vmin; 
+		height: 14vmin; 
+		width: 14vmin;  
+	}
+
+	.game-reset-button {
+		font-size: 4vmin;
+	}
+
+	.game-status-wrapper {
+		height: 8vmin; 
+	}
+}
