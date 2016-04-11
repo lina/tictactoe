@@ -1,5 +1,7 @@
+$mainColor: #ff8000;
+
 body {
-	background-color: #ff8000;
+	background-color: $mainColor;
 	font-family: 'Helvetica', 'Arial', sans-serif;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
 }
@@ -46,8 +48,9 @@ body {
 
 .title-container {
 	margin-bottom: 5%;
+	font-weight: bold;
 	letter-spacing: 1.5px;
-	font-size: 6vmin;
+	font-size: 10vmin;
 	text-shadow: #fff 0 0 8px;
 }
 
@@ -68,7 +71,7 @@ body {
 	padding-left: 5vmin;
 	padding-right: 5vmin;
 	font-size: 9vmin;
-	color: #ff8000;
+	color: $mainColor;
 	background-color: #fff;
 	border: none;
 	outline: none;
@@ -79,14 +82,14 @@ body {
 }
 
 .game-size-selection-button {
-	background-color: #ff8000;
+	background-color: $mainColor;
 	color: #fff;
 	font-size: 5vmin;
 	text-shadow: #fff 0 0 5px;
 }
 
-.game-size-selection-wrapper button:hover, .game-button-wrapper button:hover {
-	color: #ff8000;
+.game-size-selection-wrapper button:hover {
+	color: $mainColor;
 	background-color: #fff;
 }
 
@@ -97,8 +100,7 @@ body {
 
 @media (min-width: 767px) {
 	.title-container {
-		font-size: 2.3vmin;
-		margin-bottom: 0;
+		font-size: 6vmin;
 	}
 
 	.board-row-cell, .board-row-cell-filled {
@@ -113,5 +115,10 @@ body {
 
 	.game-status-wrapper {
 		height: 8vmin; 
+	}
+
+	.game-button-wrapper button:hover {
+		color: #fff;
+		background-color: $mainColor;
 	}
 }

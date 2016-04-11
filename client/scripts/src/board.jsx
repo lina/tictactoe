@@ -186,7 +186,7 @@ const Board = React.createClass({
       <div className="view-container">
       	<div>
       		<div className="title-container">
-      			<h1>TIC TAC TOE</h1>
+      			<div>TIC TAC TOE</div>
       		</div>
 
       		{(this.state.gameSize === 0) ? (
