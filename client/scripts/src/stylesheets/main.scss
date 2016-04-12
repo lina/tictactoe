@@ -83,24 +83,10 @@ body {
 }
 
 .game-size-selection-button {
-	background-color: $mainColor;
-	color: #fff;
 	font-size: 5vmin;
 	text-shadow: #fff 0 0 5px;
 }
-
-.game-size-selection-wrapper button:hover {
-	color: $mainColor;
-	background-color: #fff;
-}
-
-.game-button-wrapper button:active {
-	/*background-color: grey;*/
-	box-shadow: #fff 0 0 30px;
-
-
-}
-
+	
 .game-status-wrapper {
 	height: 20vmin;
 	text-shadow: #fff 0 0 1px;
@@ -127,8 +113,14 @@ body {
 		height: 8vmin;
 	}
 
-	.game-button-wrapper button:hover {
+	.game-reset-button, .game-size-selection-button {
 		color: #fff;
 		background-color: $mainColor;
+	}
+
+	.game-button-wrapper button:hover,  .game-size-selection-wrapper button:hover {
+		text-decoration: underline;
+		color: $mainColor;
+		background-color: #fff;
 	}
 }

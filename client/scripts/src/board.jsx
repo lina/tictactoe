@@ -237,15 +237,9 @@ const Board = React.createClass({
 							</div>
 
 							<div className="game-button-wrapper">
-							{(this.state.gameStatusText.length > 0) ? (
 								<button className="game-reset-button" onClick={this.resetGame}>
 									NEW GAME
 								</button>
-							) : (
-								<button className="game-reset-button" onClick={this.resetGame}>
-									RESTART
-								</button>
-							)}
 							</div>
 
 						</div>
