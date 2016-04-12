@@ -4,6 +4,7 @@ body {
 	background-color: $mainColor;
 	font-family: 'Helvetica', 'Arial', sans-serif;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+	overflow: hidden;
 }
 
 .board-row-cell, .board-row-cell-filled {
@@ -93,6 +94,13 @@ body {
 	background-color: #fff;
 }
 
+.game-button-wrapper button:active {
+	/*background-color: grey;*/
+	box-shadow: #fff 0 0 30px;
+
+
+}
+
 .game-status-wrapper {
 	height: 20vmin;
 	text-shadow: #fff 0 0 1px;
@@ -104,17 +112,19 @@ body {
 	}
 
 	.board-row-cell, .board-row-cell-filled {
-		font-size: 10vmin; 
-		height: 14vmin; 
-		width: 14vmin;  
+		font-size: 10vmin;
+		height: 14vmin;
+		width: 14vmin;
 	}
 
 	.game-reset-button {
+		margin-bottom: 2%;
 		font-size: 4vmin;
 	}
 
 	.game-status-wrapper {
-		height: 8vmin; 
+		margin-bottom: 2%;
+		height: 8vmin;
 	}
 
 	.game-button-wrapper button:hover {

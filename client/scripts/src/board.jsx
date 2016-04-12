@@ -2,6 +2,28 @@ import React from 'react';
 
 import util from './util';
 
+const Button = (props) =>
+	<div className={props.wrapperClassName}>
+		<button className={props.buttonClassName} onClick={props.buttonAction}>
+			{props.buttonText}
+		</button>
+	</div>;
+
+const GameCreationButtons = React.createClass({
+	createGameButtons: function(button) {
+		return (
+			<Button buttonText={button} key={button[0]} buttonAction={this.props.createGame} buttonClassName="game-size-selection-button" wrapperClassName="game-size-selection-wrapper" />
+		)
+	},
+	render: function() {
+		return (
+			<div className="game-size-selection-container">
+				{this.props.gameSizeSelectionButtons.map(this.createGameButtons)}
+			</div>
+		)
+	}
+});
+
 const Cell = React.createClass({
 	playerMoved: function() {
 		this.props.playerMoved(this.props.gridStatus.row, this.props.gridStatus.column);
@@ -11,19 +33,19 @@ const Cell = React.createClass({
 
 		if(parseInt(this.props.gridStatus.row) === 0) {
 			cellDisplayStyle.borderTop = "none";
-		} 
+		}
 
 		if(parseInt(this.props.gridStatus.column) === 0) {
 			cellDisplayStyle.borderLeft = "none";
-		} 
+		}
 
 		if(parseInt(this.props.gridStatus.column) === this.props.gameSize-1) {
 			cellDisplayStyle.borderRight = "none";
-		} 
+		}
 
 		if(parseInt(this.props.gridStatus.row) === this.props.gameSize-1) {
 			cellDisplayStyle.borderBottom = "none";
-		} 
+		}
 
 		if(this.props.gridStatus.value === null) {
 			return (
@@ -39,8 +61,9 @@ const Cell = React.createClass({
 
 const GridRow = React.createClass({
 	createRow: function(gridStatus) {
+		let key = gridStatus.row + gridStatus.column;
 		return (
-			<Cell gridStatus={gridStatus} playerMoved={this.props.playerMoved} gameSize={this.props.gameSize}/>
+			<Cell gridStatus={gridStatus} key={key} playerMoved={this.props.playerMoved} gameSize={this.props.gameSize}/>
 		)
 	},
 	render: function() {
@@ -54,8 +77,9 @@ const GridRow = React.createClass({
 
 const GridView = React.createClass({
 	createGrid: function(gridRow) {
+		let key = gridRow[0].row;
 		return (
-    	<GridRow row={gridRow} playerMoved={this.props.playerMoved} gameSize={this.props.gameSize}/>
+			<GridRow row={gridRow} key={key} playerMoved={this.props.playerMoved} gameSize={this.props.gameSize}/>
 		)
 	},
 	render: function() {
@@ -76,7 +100,7 @@ const Board = React.createClass({
 				gameStatus: util.createGameStatus(3),
 				currentPlayer: 'X',
 				gameStatusText: ''
-			}	
+			}
 		} else {
 			return {
 				gameSize: 0,
@@ -84,7 +108,7 @@ const Board = React.createClass({
 				gameStatus: [],
 				currentPlayer: 'X',
 				gameStatusText: ''
-			}			
+			}
 		}
 	},
 	createGame: function(e) {
@@ -128,7 +152,7 @@ const Board = React.createClass({
 				newGameStatus[keyName].count++;
 
 				if(currStatusObj.count === that.state.gameSize) {
-					newGameStatusText = 'Player ' + currentPlayer + ' Won!';
+					newGameStatusText = 'Player ' + currentPlayer + ' wins!';
 				}
 				return;
 			}
@@ -181,62 +205,56 @@ const Board = React.createClass({
 
 		this.checkWinner(currentPlayer, row, column);
 	},
-  render: function() {
-    return (
-      <div className="view-container">
-      	<div>
-      		<div className="title-container">
-      			<div>TIC TAC TOE</div>
-      		</div>
+	render: function() {
+		const gameSizeSelectionButtons = ['3 x 3', '4 x 4', '5 x 5'];
 
-      		{(this.state.gameSize === 0) ? (
-	      		<div className="game-size-selection-container">
-			    		<div className="game-size-selection-wrapper">
-			      		<button className="game-size-selection-button" onClick={this.createGame}>
-			      			3 x 3
-		      			</button>
-			    		</div>
-			    		<div className="game-size-selection-wrapper">
-			      		<button className="game-size-selection-button" onClick={this.createGame}>
-			      			4 x 4
-		      			</button>
-			    		</div>		    		
-			    		<div className="game-size-selection-wrapper">
-			      		<button className="game-size-selection-button" onClick={this.createGame}>
-			      			5 x 5
-		      			</button>
-			    		</div>
-	      		</div>
-    			) : (
-	      		<div>
-			      	<div className="board-container">
-			      		<GridView board={this.state.board} playerMoved={this.playerMoved} gameSize={this.state.gameSize}/>
-			    		</div>
-			    		<div className="game-status-wrapper">
-				      	{( this.state.gameStatusText.length > 0 ) ? (
-				        	<h1>{this.state.gameStatusText}</h1>
-				    		) : (
-				    			<div className="game-status">
-					      		{( this.state.gameStatus.moveCount === 0 ) ? (
-					      			<h1></h1>
-				      			) : (
-					      			<h1>Current player: {this.state.currentPlayer}</h1>
-				      			)}
-			      			</div>
-				    		)}
-			    		</div>
-			    		<div className="game-button-wrapper">
-			      		<button className="game-reset-button" onClick={this.resetGame}>
-			      			NEW GAME
-		      			</button>
-			    		</div>
-		    		</div>
-    			)}
+		return (
+			<div className="view-container">
+				<div>
+					<div className="title-container">
+						<div>TIC TAC TOE</div>
+					</div>
 
-      	</div>
-      </div>
-    )
-  }
+					{(this.state.gameSize === 0) ? (
+						<GameCreationButtons gameSizeSelectionButtons={gameSizeSelectionButtons} createGame={this.createGame}/>
+					) : (
+						<div>
+							<div className="board-container">
+								<GridView board={this.state.board} playerMoved={this.playerMoved} gameSize={this.state.gameSize}/>
+							</div>
+							<div className="game-status-wrapper">
+								{( this.state.gameStatusText.length > 0 ) ? (
+									<h1>{this.state.gameStatusText}</h1>
+								) : (
+									<div className="game-status">
+										{( this.state.gameStatus.moveCount === 0 ) ? (
+											<h1></h1>
+										) : (
+											<h1>Current player: {this.state.currentPlayer}</h1>
+										)}
+									</div>
+								)}
+							</div>
+
+							<div className="game-button-wrapper">
+							{(this.state.gameStatusText.length > 0) ? (
+								<button className="game-reset-button" onClick={this.resetGame}>
+									NEW GAME
+								</button>
+							) : (
+								<button className="game-reset-button" onClick={this.resetGame}>
+									RESTART
+								</button>
+							)}
+							</div>
+
+						</div>
+					)}
+
+				</div>
+			</div>
+		)
+	}
 });
 
 export default Board;
