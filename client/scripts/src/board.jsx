@@ -24,6 +24,21 @@ const GameCreationButtons = React.createClass({
 	}
 });
 
+const GameCreationButtons = React.createClass({
+	createGameButtons: function(button) {
+		return (
+			<Button buttonText={button} key={button[0]} buttonAction={this.props.createGame} buttonClassName="game-size-selection-button" wrapperClassName="game-size-selection-wrapper" />
+		)
+	},
+	render: function() {
+		return (
+			<div className="game-size-selection-container">
+				{this.props.gameSizeSelectionButtons.map(this.createGameButtons)}
+			</div>
+		)
+	}
+});
+
 const Cell = React.createClass({
 	playerMoved: function() {
 		this.props.playerMoved(this.props.gridStatus.row, this.props.gridStatus.column);
@@ -99,7 +114,8 @@ const Board = React.createClass({
 				board: util.createBoard(3),
 				gameStatus: util.createGameStatus(3),
 				currentPlayer: 'X',
-				gameStatusText: ''
+				gameStatusText: '',
+				gameMode: null
 			}
 		} else {
 			return {
@@ -107,7 +123,8 @@ const Board = React.createClass({
 				board: [],
 				gameStatus: [],
 				currentPlayer: 'X',
-				gameStatusText: ''
+				gameStatusText: '',
+				gameMode: null
 			}
 		}
 	},
@@ -201,12 +218,13 @@ const Board = React.createClass({
 		this.setState({
 			board: newBoard,
 			currentPlayer: nextPlayer
-		})
+		});
 
 		this.checkWinner(currentPlayer, row, column);
 	},
 	render: function() {
 		const gameSizeSelectionButtons = ['3 x 3', '4 x 4', '5 x 5'];
+		const gameModeSelectionButtons = ['Player vs Player', 'Player vs Computer'];
 
 		return (
 			<div className="view-container">
