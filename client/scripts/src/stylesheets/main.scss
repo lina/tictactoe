@@ -86,8 +86,9 @@ body {
 .game-difficulty-button {
 	margin-top: 20px;
 	text-align: center;
-	border: 1px solid white;
+	border: 2px solid white;
 	padding: 5px;
+	border-radius: 25px;
 }
 
 .game-reset-button, .game-new-button, .game-difficulty-button {

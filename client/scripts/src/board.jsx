@@ -232,15 +232,13 @@ const Board = React.createClass({
 				board: util.createBoard(gameSize),
 				gameStatus: util.createGameStatus(gameSize)
 			});
-		}.bind(this), 30);
+		}.bind(this), 200);
 	},
 	selectGameMode: function(e) {
 		let gameMode = parseInt(e.target.innerHTML[0]);
-		setTimeout(function() {
-			this.setState({
-				gameMode: gameMode
-			});
-		}.bind(this), 30);
+		this.setState({
+			gameMode: gameMode
+		});
 	},
 	checkWinner: function(currentPlayer, row, column) {
 		let rowKey = 'r' + row;
